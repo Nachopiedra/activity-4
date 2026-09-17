@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  format-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install formatting tools
+        run: pip install -r requirements/dev.txt
+
+      - name: Run ruff (lint and import order)
+        run: ruff check .
+
+      - name: Run black (format check)
+        run: black --config .black --check .
