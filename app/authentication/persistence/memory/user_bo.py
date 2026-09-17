@@ -1,7 +1,7 @@
 from app.authentication.domain.bo.user_bo import UserBO
 from app.authentication.domain.persistences.exceptions import (
-    UserNotFoundException,
     UsernameAlreadyTakenException,
+    UserNotFoundException,
 )
 from app.authentication.domain.persistences.user_bo_interface import UserInterface
 

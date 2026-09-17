@@ -1,12 +1,6 @@
 from fastapi import APIRouter, Body, Header, HTTPException
 from pydantic import BaseModel
 
-from app.authentication.domain.persistences.exceptions import (
-    TokenNotFound,
-    UserNotFoundException,
-    UsernameAlreadyTakenException,
-    WrongPasswordException,
-)
 from app.authentication.dependency_injection.domain.introspect_controller import (
     introspect_controller,
 )
@@ -18,6 +12,12 @@ from app.authentication.dependency_injection.domain.logout_controller import (
 )
 from app.authentication.dependency_injection.domain.register_controller import (
     register_controller,
+)
+from app.authentication.domain.persistences.exceptions import (
+    TokenNotFound,
+    UsernameAlreadyTakenException,
+    UserNotFoundException,
+    WrongPasswordException,
 )
 
 router = APIRouter()
@@ -62,9 +62,7 @@ class LoginInput(BaseModel):
 @router.post("/login")
 async def login_post(input: LoginInput = Body()) -> dict[str, str]:
     try:
-        token = login_controller.login(
-            username=input.username, password=input.password
-        )
+        token = login_controller.login(username=input.username, password=input.password)
     except UserNotFoundException:
         raise HTTPException(status_code=404, detail="User not found")
     except WrongPasswordException:

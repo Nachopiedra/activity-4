@@ -3,11 +3,6 @@ from typing import Optional
 from fastapi import APIRouter, Body, File, Header, HTTPException, UploadFile
 from pydantic import BaseModel
 
-from app.files.domain.persistences.exceptions import (
-    FileContentNotFoundException,
-    FileNotFoundException,
-    UnauthorizedException,
-)
 from app.files.dependency_injection.domain.create_file_controller import (
     create_file_controller,
 )
@@ -23,6 +18,11 @@ from app.files.dependency_injection.domain.list_files_controller import (
 from app.files.dependency_injection.domain.merge_controller import merge_controller
 from app.files.dependency_injection.domain.upload_content_controller import (
     upload_content_controller,
+)
+from app.files.domain.persistences.exceptions import (
+    FileContentNotFoundException,
+    FileNotFoundException,
+    UnauthorizedException,
 )
 
 router = APIRouter()
@@ -96,9 +96,7 @@ async def upload_content(
 ) -> dict[str, str]:
     content = await file_content.read()
     try:
-        await upload_content_controller.upload_content(
-            token=auth, file_id=id, content=content
-        )
+        await upload_content_controller.upload_content(token=auth, file_id=id, content=content)
     except UnauthorizedException:
         raise HTTPException(status_code=401, detail="Unauthorized")
     except FileNotFoundException:

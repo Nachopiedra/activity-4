@@ -6,9 +6,7 @@ from app.authentication.domain.persistences.user_bo_interface import UserInterfa
 class IntrospectController:
     """Use case: validate a session token and return its user."""
 
-    def __init__(
-        self, token_persistence: TokenInterface, user_persistence: UserInterface
-    ) -> None:
+    def __init__(self, token_persistence: TokenInterface, user_persistence: UserInterface) -> None:
         self._token_persistence = token_persistence
         self._user_persistence = user_persistence
 

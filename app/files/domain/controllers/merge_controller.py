@@ -38,9 +38,7 @@ class MergeController:
                     raise UnauthorizedException()
                 if not file.has_content or file.object_name is None:
                     raise FileContentNotFoundException()
-                local_path = await self._file_storage.get_file(
-                    file.object_name, "/tmp"
-                )
+                local_path = await self._file_storage.get_file(file.object_name, "/tmp")
                 downloaded_paths.append(local_path)
 
             merger = PdfMerger()

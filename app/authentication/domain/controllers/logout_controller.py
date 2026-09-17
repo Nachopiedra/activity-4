@@ -9,4 +9,3 @@ class LogoutController:
 
     def logout(self, token: str) -> None:
         self._token_persistence.delete_token(token)
-

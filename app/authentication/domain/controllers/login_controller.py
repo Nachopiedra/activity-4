@@ -8,9 +8,7 @@ from app.authentication.domain.persistences.user_bo_interface import UserInterfa
 class LoginController:
     """Use case: authenticate a user and open a session."""
 
-    def __init__(
-        self, user_persistence: UserInterface, token_persistence: TokenInterface
-    ) -> None:
+    def __init__(self, user_persistence: UserInterface, token_persistence: TokenInterface) -> None:
         self._user_persistence = user_persistence
         self._token_persistence = token_persistence
 

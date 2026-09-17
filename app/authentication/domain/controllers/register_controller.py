@@ -10,9 +10,7 @@ class RegisterController:
     def __init__(self, user_persistence: UserInterface) -> None:
         self._user_persistence = user_persistence
 
-    def register(
-        self, username: str, password: str, mail: str, age_of_birth: int
-    ) -> UserBO:
+    def register(self, username: str, password: str, mail: str, age_of_birth: int) -> UserBO:
         hashed_password = sha256((username + password).encode()).hexdigest()
         user = UserBO(
             username=username,

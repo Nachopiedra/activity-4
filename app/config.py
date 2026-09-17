@@ -13,6 +13,7 @@ class PostgresSettings(BaseSettings):
 
 postgres_settings = PostgresSettings()
 
+
 class RedisSettings(BaseSettings):
     model_config = SettingsConfigDict(env_prefix="REDIS_")
 
@@ -22,6 +23,7 @@ class RedisSettings(BaseSettings):
 
 
 redis_settings = RedisSettings()
+
 
 class MinioSettings(BaseSettings):
     model_config = SettingsConfigDict(env_prefix="MINIO_")
@@ -34,6 +36,7 @@ class MinioSettings(BaseSettings):
 
 
 minio_settings = MinioSettings()
+
 
 class InternalServiceSettings(BaseSettings):
     model_config = SettingsConfigDict(env_prefix="INTERNAL_")

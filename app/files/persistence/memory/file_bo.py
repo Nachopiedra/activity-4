@@ -28,11 +28,7 @@ class MemoryFilePersistence(FileInterface):
         return file
 
     def list_files(self, owner_username: str) -> list[FileBO]:
-        return [
-            file
-            for file in self._files.values()
-            if file.owner_username == owner_username
-        ]
+        return [file for file in self._files.values() if file.owner_username == owner_username]
 
     def update_file(self, file: FileBO) -> None:
         if file.id not in self._files:
